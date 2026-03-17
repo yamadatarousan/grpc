@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package todo.v1;
+
+option go_package = "github.com/example/grpc-learning/gen/go/todo/v1;todov1";
+
+message Todo {
+  string id = 1;
+  string title = 2;
+  int64 created_at_unix = 3;
+}
+
+message AddTodoRequest {
+  string title = 1;
+}
+
+message AddTodoResponse {
+  Todo todo = 1;
+}
+
+message ListTodosRequest {}
+
+message ListTodosResponse {
+  repeated Todo todos = 1;
+}
+
+service TodoService {
+  rpc AddTodo(AddTodoRequest) returns (AddTodoResponse);
+  rpc ListTodos(ListTodosRequest) returns (ListTodosResponse);
+}
